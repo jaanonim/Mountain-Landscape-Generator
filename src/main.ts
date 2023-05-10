@@ -22,7 +22,8 @@ function main(): void {
     const ctx = canvasHTML.getContext("2d");
     if (!ctx) throw Error("Missing ctx");
 
-    const seed = window.location.pathname.split("/")[1];
+    const paths = window.location.pathname.split("/");
+    const seed = paths[paths.length - 1] || paths[paths.length - 2];
     generate(ctx, seed);
 
     document.getElementById("regenerate")!.onclick = () => {

@@ -19,6 +19,16 @@ function main(): void {
         link.click();
     };
 
+    document.getElementById("shareImg")!.onclick = async () => {
+        const dataUrl = canvasHTML.toDataURL();
+        const blob = await (await fetch(dataUrl)).blob();
+        navigator.share({ files: [new File([blob], "img.png")] });
+    };
+
+    document.getElementById("shareLink")!.onclick = () => {
+        navigator.share({ url: window.location.toString() });
+    };
+
     const ctx = canvasHTML.getContext("2d");
     if (!ctx) throw Error("Missing ctx");
 

@@ -27,6 +27,30 @@ body {
     height: 100vh;
 }
 
+#close {
+    display: none;
+}
+
+.button {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    min-width: 9rem;
+    transition: all ease-in-out 0.2s;
+    margin: 1rem;
+}
+
+button:focus {
+    outline: none;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0.5rem 0.2rem rgba(255, 255, 255, 0.2);
+}
+
 .options {
     position: fixed;
     top: 0;
@@ -45,6 +69,63 @@ body {
     right: calc(-1 * var(--size));
 }
 
+@media screen and (max-width: 1100px) {
+    .options {
+        width: 40vw;
+    }
+
+    .hidden {
+        --size: calc(2rem + 40vw);
+        right: calc(-1 * var(--size));
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .options {
+        width: 100vw;
+    }
+
+    .hidden {
+        --size: calc(2rem + 100vw);
+        right: calc(-1 * var(--size));
+    }
+
+    #close {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        left: -1rem;
+        width: 2rem;
+        height: 2rem;
+        padding: 0;
+        margin: 0;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+    }
+
+    #close::after {
+        content: " ";
+        width: 2rem;
+        background-color: #fff;
+        height: 0.2rem;
+        position: absolute;
+        top: 1rem;
+        left: 0rem;
+        transform: rotate(45deg);
+    }
+
+    #close::before {
+        content: " ";
+        width: 2rem;
+        background-color: #fff;
+        height: 0.2rem;
+        position: absolute;
+        top: 1rem;
+        left: 0rem;
+        transform: rotate(-45deg);
+    }
+}
+
 .content {
     margin-left: 2rem;
     text-align: center;
@@ -55,26 +136,6 @@ h1 {
     margin: 1rem;
     font-size: 1.5rem;
     text-align: center;
-}
-
-button {
-    border: none;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    min-width: 9rem;
-    transition: all ease-in-out 0.2s;
-    margin: 1rem;
-}
-
-button:focus {
-    outline: none;
-}
-
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 0.5rem 0.2rem rgba(255, 255, 255, 0.2);
 }
 
 a {
@@ -90,7 +151,7 @@ footer {
     position: absolute;
     bottom: 0;
     left: 0;
+    right: 0;
     padding: 1rem;
     text-align: center;
-    width: 100%;
 }

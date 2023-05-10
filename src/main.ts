@@ -12,6 +12,11 @@ function main(): void {
         else ele.classList.add("hidden");
     };
 
+    document.getElementById("close")!.onclick = () => {
+        const ele = document.getElementById("options") as HTMLElement;
+        ele.classList.add("hidden");
+    };
+
     document.getElementById("download")!.onclick = () => {
         const link = document.createElement("a");
         link.download = "img.png";

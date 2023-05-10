@@ -27,7 +27,14 @@ function main(): void {
     document.getElementById("shareImg")!.onclick = async () => {
         const dataUrl = canvasHTML.toDataURL();
         const blob = await (await fetch(dataUrl)).blob();
-        navigator.share({ files: [new File([blob], "img.png")] });
+        navigator.share({
+            files: [
+                new File([blob], "img.png", {
+                    type: blob.type,
+                    lastModified: new Date().getTime(),
+                }),
+            ],
+        });
     };
 
     document.getElementById("shareLink")!.onclick = () => {

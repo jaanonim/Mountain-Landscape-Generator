@@ -101,6 +101,7 @@ button:focus {
         margin: 0;
         background-color: rgba(0, 0, 0, 0);
         border: none;
+        transition: all ease-in-out 0.2s;
     }
 
     #close::after {
@@ -123,6 +124,10 @@ button:focus {
         top: 1rem;
         left: 0rem;
         transform: rotate(-45deg);
+    }
+
+    #close:hover {
+        transform: scale(1.1);
     }
 }
 

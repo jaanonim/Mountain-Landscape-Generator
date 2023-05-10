@@ -49,6 +49,7 @@ function generate(ctx: CanvasRenderingContext2D, seed: string) {
 function onResize(ctx: CanvasRenderingContext2D, drawer: Drawer) {
     ctx.canvas.width = document.body.clientWidth;
     ctx.canvas.height = document.body.clientHeight;
+
     drawer.draw();
     generateFavicon(ctx);
 }

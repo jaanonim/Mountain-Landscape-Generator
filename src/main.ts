@@ -22,19 +22,21 @@ function main(): void {
     const ctx = canvasHTML.getContext("2d");
     if (!ctx) throw Error("Missing ctx");
 
-    const paths = window.location.pathname.split("/");
-    const seed = paths[paths.length - 1] || paths[paths.length - 2];
-    generate(ctx, seed);
+    window.onhashchange = () => {
+        updateHash(ctx);
+    };
 
     document.getElementById("regenerate")!.onclick = () => {
         const seed = Random.generateSeed(6);
-        window.history.replaceState(
-            { additionalInformation: "Regenerated seed" },
-            seed,
-            seed
-        );
-        generate(ctx, seed);
+        window.location.hash = seed;
     };
+
+    updateHash(ctx);
+}
+
+function updateHash(ctx: CanvasRenderingContext2D) {
+    const seed = window.location.hash;
+    generate(ctx, seed);
 }
 
 function generate(ctx: CanvasRenderingContext2D, seed: string) {

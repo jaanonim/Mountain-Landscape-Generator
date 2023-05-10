@@ -74,8 +74,8 @@ export default class Drawer {
 
         this.drawMountainRange(
             this.ctx.canvas.height / 2,
-            Color.fromHex("#204070"),
-            Color.fromHex("#000204"),
+            Color.fromHex("#103050"),
+            Color.fromHex("#002030"),
             {
                 size: this.ctx.canvas.width,
                 offset: 0,
@@ -87,8 +87,8 @@ export default class Drawer {
 
         this.drawMountainRange(
             (this.ctx.canvas.height * 7) / 10,
-            Color.fromHex("#153057"),
-            Color.fromHex("#000204"),
+            Color.fromHex("#102040"),
+            Color.fromHex("#001014"),
             {
                 size: this.ctx.canvas.width,
                 offset: 2000,

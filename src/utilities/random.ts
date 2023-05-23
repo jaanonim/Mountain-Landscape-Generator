@@ -62,6 +62,10 @@ export default class Random {
         return n;
     }
 
+    randInt(max: number) {
+        return Math.floor(this.rand() * max);
+    }
+
     static init(seed: string | undefined) {
         this._instance = new Random(seed);
     }

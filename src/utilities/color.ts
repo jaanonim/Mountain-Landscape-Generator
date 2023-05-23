@@ -142,4 +142,9 @@ export default class Color {
         this.multiply(1 - this.a / 255).add(v.multiply(v.a / 255));
         return this;
     }
+
+    getSubjectiveBrightness() {
+        const n = this.copy().normalize();
+        return (0.21 * n.r + 0.72 * n.g + 0.07 * n.b) * n.a;
+    }
 }

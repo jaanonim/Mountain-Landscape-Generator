@@ -43,9 +43,36 @@ function main(): void {
 
     const ctx = canvasHTML.getContext("2d");
     if (!ctx) throw Error("Missing ctx");
+    ctx.getContextAttributes().willReadFrequently = true;
+
+    const drawer = new Drawer(ctx, false);
+    drawer.update();
+    drawer.onOffsetChange.addEventListener((n: number) => {
+        (document.getElementById("pos") as HTMLInputElement).value =
+            "" + n / 50;
+    });
+
+    document.getElementById("pos")!.oninput = () => {
+        const v = parseFloat(
+            (document.getElementById("pos") as HTMLInputElement).value
+        );
+        drawer.setOffset(v * 50);
+    };
+
+    document.getElementById("animate")!.onclick = () => {
+        const ele = document.getElementById("animate");
+        if (ele?.classList.contains("play")) {
+            ele.classList.remove("play");
+            ele.classList.add("pause");
+        } else if (ele?.classList.contains("pause")) {
+            ele.classList.remove("pause");
+            ele.classList.add("play");
+        }
+        drawer.changeAnimate();
+    };
 
     window.onhashchange = () => {
-        updateHash(ctx);
+        updateHash(ctx, drawer);
     };
 
     document.getElementById("regenerate")!.onclick = () => {
@@ -53,16 +80,20 @@ function main(): void {
         window.location.hash = seed;
     };
 
-    updateHash(ctx);
+    updateHash(ctx, drawer);
+
+    setInterval(() => {
+        generateFavicon(ctx);
+    }, 1000);
 }
 
-function updateHash(ctx: CanvasRenderingContext2D) {
+function updateHash(ctx: CanvasRenderingContext2D, drawer: Drawer) {
     const seed = window.location.hash;
-    generate(ctx, seed);
+    generate(ctx, drawer, seed);
 }
 
-function generate(ctx: CanvasRenderingContext2D, seed: string) {
-    const drawer = new Drawer(ctx, seed);
+function generate(ctx: CanvasRenderingContext2D, drawer: Drawer, seed: string) {
+    drawer.regenerate(seed);
 
     onResize(ctx, drawer);
     window.onresize = () => {
@@ -74,7 +105,8 @@ function onResize(ctx: CanvasRenderingContext2D, drawer: Drawer) {
     ctx.canvas.width = document.body.clientWidth;
     ctx.canvas.height = document.body.clientHeight;
 
-    drawer.draw();
+    drawer.onResize();
+
     generateFavicon(ctx);
 }
 

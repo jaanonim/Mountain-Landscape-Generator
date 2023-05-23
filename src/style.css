@@ -7,6 +7,8 @@
     color: #fff;
     background-color: #242424;
 
+    --primary: #1aa3ff;
+
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -144,7 +146,7 @@ h1 {
 }
 
 a {
-    color: #1aa3ff;
+    color: var(--primary);
     text-decoration: none;
 }
 
@@ -159,4 +161,135 @@ footer {
     right: 0;
     padding: 1rem;
     text-align: center;
+}
+
+input[type="range"] {
+    display: block;
+    position: absolute;
+    -webkit-appearance: none;
+    padding: 0;
+    height: 1rem;
+    border-radius: 0;
+    width: 90%;
+    outline: none;
+    left: 1.5rem;
+    top: 0.5rem;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 1rem;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ff5533, #271a6b, #130d38);
+    border: 1px #fff solid;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    position: relative;
+    -webkit-appearance: none;
+    box-sizing: content-box;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 1px 0 0 0;
+
+    border: 1px #fff solid;
+    background-color: transparent;
+    transition: border-radius 0.5s, background 0.5s;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.animate {
+    display: block;
+    position: absolute;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    width: 1rem;
+    height: 1rem;
+    left: 0;
+    top: calc(0.5rem + 2px);
+    box-shadow: none;
+    padding: 0;
+}
+
+.icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+.icon::after {
+    transition: all 0.5s;
+}
+
+.icon::before {
+    transition: all 0.5s;
+}
+
+.play .icon::after {
+    content: " ";
+    width: 1rem;
+    background-color: #fff;
+    height: 0.1rem;
+    position: absolute;
+    top: 0.2rem;
+    left: 0.1rem;
+    transform: rotate(35deg);
+}
+
+.play .icon::before {
+    content: " ";
+    width: 1rem;
+    background-color: #fff;
+    height: 0.1rem;
+    position: absolute;
+    bottom: 0.2rem;
+    left: 0.1rem;
+    transform: rotate(-35deg);
+}
+
+.pause .icon::after {
+    content: " ";
+    width: 1.1rem;
+    background-color: #fff;
+    height: 0.1rem;
+    position: absolute;
+    top: 0.45rem;
+    left: -0.25rem;
+    transform: rotate(90deg);
+}
+
+.pause .icon::before {
+    content: " ";
+    width: 1.1rem;
+    background-color: #fff;
+    height: 0.1rem;
+    position: absolute;
+    top: 0.45rem;
+    right: -0.25rem;
+    transform: rotate(-90deg);
+}
+
+.player {
+    padding: 0.5rem;
+    height: 1rem;
+    position: relative;
 }

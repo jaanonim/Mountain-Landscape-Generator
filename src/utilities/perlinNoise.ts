@@ -68,7 +68,7 @@ export default class PerlinNoise {
 
             for (let x = 0; x < size; x++) {
                 let v = 0;
-                const pos = offset + (x + start) * freq;
+                const pos = (offset + (x + start)) * freq;
                 v += this.perlin(pos) * amp;
                 heights.push(v);
             }
